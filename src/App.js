@@ -59,7 +59,7 @@ export default function App() {
       <h1>Phonebook</h1>
       <ContactForm contacts={contacts} onAddContact={addContact} />
 
-      <h2>Contacts (total: {getTotalContactsCount}) </h2>
+      <h2>Contacts (total: {getTotalContactsCount()}) </h2>
       <Filter value={filter} onChange={changeFilter}/>
       <ContactList contacts={visibleContacts()} onDeleteContact={deleteContact} />
     </div>        
