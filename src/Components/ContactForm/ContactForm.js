@@ -3,7 +3,7 @@ import useLocalStorage from '../../hooks/useLocalStorage';
 import PropTypes from 'prop-types';
 import styles from './ContactForm.module.css';
 
-export default function ContactForm({ contacts, onAddContact }) {
+export default function ContactForm({ onAddContact }) {
     const [name, setName] = useLocalStorage('name', '');
     const [number, setNumber] = useLocalStorage('number', '');  
 
