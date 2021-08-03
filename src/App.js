@@ -19,9 +19,14 @@ export default function App() {
     return JSON.parse(window.localStorage.getItem('contacts')) ?? initialContacts});
   
   const [filter, setFilter] = useState('');
+  const [totalContacts, setTotalContacts] = useState(0);
 
   useEffect(() => {
     window.localStorage.setItem('contacts', JSON.stringify(contacts));
+  }, [contacts]);
+
+  useEffect(() => {
+    setTotalContacts(contacts.length);
   }, [contacts]);
 
   const addContact = (name, number) => {
@@ -46,8 +51,6 @@ export default function App() {
     setFilter(event.currentTarget.value)
   }
 
-  const getTotalContactsCount = () => { return contacts.length };
-
   const visibleContacts = () => {
     const normalizedFilter = filter.toLowerCase();
     const resultedVisibleContacts = contacts.filter(contact => contact.name.toLowerCase().includes(normalizedFilter),);
@@ -59,7 +62,7 @@ export default function App() {
       <h1>Phonebook</h1>
       <ContactForm contacts={contacts} onAddContact={addContact} />
 
-      <h2>Contacts (total: {getTotalContactsCount()}) </h2>
+      <h2>Contacts (total: {totalContacts}) </h2>
       <Filter value={filter} onChange={changeFilter}/>
       <ContactList contacts={visibleContacts()} onDeleteContact={deleteContact} />
     </div>        
